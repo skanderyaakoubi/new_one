@@ -21,4 +21,10 @@ class CustomException(Exception):
     
 
 
-        
+# Test du CustomException
+if __name__ == "__main__":
+    try:
+        a = 1 / 0  # Division par zéro pour déclencher l'exception
+    except Exception as e:
+        logging.info("Divide by Zero error")
+        raise CustomException(e, sys)        
