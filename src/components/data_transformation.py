@@ -20,7 +20,7 @@ class DataTransformationConfig :
 class DataTransformation:
     def __init__(self) :
         self.data_transformation_config=DataTransformationConfig()
-    def get_data_transformer(self):
+    def get_data_transformer_object(self):
         try :
             numerical_columns=["writing_score","reading_score"]
             categorical_columns=["gender","race_ethnicity","parental_level_of_education","lunch","test_preparation_course"]
@@ -40,8 +40,15 @@ class DataTransformation:
             )
             logging.info("numerical & categorical completed")
 
-            preprocessor=
-        except:
-            pass
+            preprocessor=ColumnTransformer(
+                [
+                ("num_pipeline",num_pipeline,numerical_columns),
+                ("cat_pipelines",cat_pipeline,categorical_columns)
+
+                ]
+            return preprocessor
+        
+        except Exception as e:
+            raise CustomException(e,sys)
 
 
